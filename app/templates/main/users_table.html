@@ -1,0 +1,48 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Users
+{% endblock %}
+
+{% block app_content %}
+    <div class="panel panel-default">
+
+        <div class="panel-heading">Existed users</div>
+
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Full name</th>
+                <th>Birthday</th>
+                <th>Gender</th>
+                <th>Pet</th>
+                <th>Record date</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.full_name }}</td>
+                    <td>{{ moment(user.birthday).format('L') }}</td>
+                    <td>{{ user.gender }}</td>
+                    <td>{{ user.pet }}</td>
+                    <td>{{ moment(user.timestamp).format('LLL') }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous{% if not prev_url %} disabled{% endif %}">
+                <a href="{{ prev_url or '#' }}">
+                    <span aria-hidden="true">&larr;</span> Newer
+                </a>
+            </li>
+            <li class="next{% if not next_url %} disabled{% endif %}">
+                <a href="{{ next_url or '#' }}">
+                    Older <span aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+{% endblock %}
