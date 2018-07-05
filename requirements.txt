@@ -4,3 +4,5 @@ Flask-Bootstrap
 Flask-WTF
 Flask-Migrate
 Flask-Moment
+gunicorn
+psycopg2
