@@ -31,7 +31,7 @@ def normalize_other_pet(pet):
 class AddingUserForm(FlaskForm):
     full_name = StringField('Full name',
                             validators=[DataRequired(),
-                                        Length(max=3 * User.first_name.property.columns[0].type.length + 2)],
+                                        Length(max=90)],
                             filters=[normalize_full_name],
                             render_kw={'placeholder': 'Anisimov Danil Alekseevich'})
 
@@ -43,7 +43,7 @@ class AddingUserForm(FlaskForm):
                       choices=[('none', "No pets"), ('cat', 'Cat'),
                                ('dog', 'Dog'), ('parrot', 'Parrot'), ('other', 'Other')])
 
-    other_pet = StringField('Other pet', validators=[Length(max=User.pet.property.columns[0].type.length)],
+    other_pet = StringField('Other pet', validators=[Length(max=60)],
                             filters=[normalize_other_pet],
                             render_kw={'placeholder': 'Other pet'})
     submit = SubmitField('Add user')
